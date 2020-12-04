@@ -7,7 +7,6 @@ const criminalElement = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
 const render = (criminals) => {
-    // criminalElement.innerHTML = criminalCollection.map( (person) => Criminal(person))
 
     let appStateCriminals = []
 
