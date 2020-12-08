@@ -9,12 +9,12 @@ const eventHub = document.querySelector(".container")
 const render = (criminals) => {
 
     let appStateCriminals = []
-
+    //can also use .map instead of for loop
     for (const perp of criminals) { // for each object of our criminals array...
         appStateCriminals.push(Criminal(perp)) //Push that object in appSateCriminals array presented in HTML. Criminal is the function that we represent out JS code in HTML
     }
 
-    criminalElement.innerHTML = appStateCriminals.join("")
+    criminalElement.innerHTML = appStateCriminals.join("") //not necessary but this removes the commas after each object and joins them with no space
 }
 
 // Listen for the custom event you dispatched in ConvictionSelect
