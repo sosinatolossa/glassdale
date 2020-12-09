@@ -1,0 +1,46 @@
+{
+  "notes": [
+    {
+      "author": "Ariana Jones",
+      "suspect": "The riddle",
+      "note": "She's crazy",
+      "date": 1607544266624,
+      "id": 1
+    },
+    {
+      "author": "Michael David",
+      "suspect": "John",
+      "note": "He's ..",
+      "date": 1607544816716,
+      "id": 2
+    },
+    {
+      "author": "AJ",
+      "suspect": "JOhn",
+      "note": "AJ is stealing",
+      "date": 1607545784157,
+      "id": 3
+    },
+    {
+      "author": "Saron Tolossa",
+      "suspect": "Andrew Johnson",
+      "note": "He lost money.",
+      "date": 1607547490178,
+      "id": 4
+    },
+    {
+      "author": "Nigist Birattu",
+      "suspect": "Isaiah Roberto",
+      "note": "She made some songs.",
+      "date": 1607547540466,
+      "id": 5
+    },
+    {
+      "author": "Dijra Thomas",
+      "suspect": "Aster Challa",
+      "note": "She cooked lasagna.",
+      "date": 1607547586052,
+      "id": 6
+    }
+  ]
+}
