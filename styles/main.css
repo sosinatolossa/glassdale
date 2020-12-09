@@ -9,6 +9,24 @@
     border: dotted black 2px;
     padding: 5px;
     margin: 10px;
-    flex-basis: 25%;
+    flex-basis: 22%;
     background-color: bisque;
+}
+
+.dropdown {
+    flex: 5;
+    color: red;
+    flex-wrap: wrap-reverse;
+    margin-bottom: 10px;
+}
+
+.noteList {
+    display: flex;
+    justify-content: space-between;
+}
+
+.note {
+    padding: 5px;
+    border: dotted 3px bisque;
+    margin-top: 5px;
 }
