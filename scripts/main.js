@@ -28,3 +28,28 @@ ConvictionSelect()
 // Which modules are involved?
 // CriminalList
 // ConvictionSelect
+
+
+// Alibis (ch. 8)
+//1)
+// Add a button to Criminal (HTML converter) component
+// Add new component to display known associates: AssociateDisplay
+    //job: create HTML rep. of associates and alibis
+
+//2)
+//You use the CriminalsProvider to grab data from in the API
+
+//3)
+//Criminal.js
+
+//4)
+//Dispatch custom event from Criminal.js to alert other modules that the associate button (for known associates) has been clicked
+
+//5)
+//AssociateDisplay will be listening for that click event
+//You send the criminals' id data
+//AssociatesDisplay component needs to find() the criminals with the matching id
+//Loop over the found criminals(known_associates) array and display them
+
+//6)
+//it's recommended to have new DOM element
