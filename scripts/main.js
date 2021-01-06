@@ -1,18 +1,18 @@
 import {CriminalList} from "./criminals/CriminalList.js"
 import {ConvictionSelect} from "./convictions/ConvictionSelect.js"
 import { OfficerSelect } from "./officers/OfficerSelect.js"
-import { NoteForm, render } from "./notes/NoteForm.js"
+import { NoteForm } from "./notes/NoteForm.js"
 import { ShowNoteButton } from "./notes/ShowNotesButton.js"
 import "./notes/NoteList.js"
 
 OfficerSelect()
 CriminalList()
-render()
+NoteForm()
 ShowNoteButton()
 ConvictionSelect()
 
 
-// TODO: to filter out criminals based on the crime they've commited
+// TODO: to filter out criminals based on the crime they've committed
 // What feature are we implementing?
 // Filter our criminals by the crimes committed
 
@@ -56,17 +56,3 @@ ConvictionSelect()
 
 
 
-// 01/05/2021
-// TODO: Change suspect text input to dropdown select of API criminals 
-// Make a select element and populate it with all of the criminals
-     // Fetch call to get all the criminals(maybe)
-// Change the HTML representation of our form
-// Event listener to listen for dropdown change/select (maybe)
-// Change how the note is saved, to capture the criminalID
-// Change how note objects are represented when we fetch notes data
-
-// Modules that refactor:
-// NoteForm
-// Note
-// NoteList
-// notes.json

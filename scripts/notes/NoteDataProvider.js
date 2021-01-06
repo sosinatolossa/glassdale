@@ -1,5 +1,3 @@
-
-
 const eventHub = document.querySelector(".container")
 
 let notes = []
@@ -24,14 +22,21 @@ export const getNotes = () => {
 
 export const saveNote = note => {
     let stringifiedObj = JSON.stringify(note)
-    debugger
     return fetch('http://localhost:8088/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(note)
+        body: stringifiedObj
     })
     .then(getNotes) //fetch the notes collection containing the newly added note
     .then(dispatchStateChangeEvent) //tell any component listening that the notes state has been updated
+}
+
+export const deleteNote = noteId => {
+    return fetch(`http://localhost:8088/notes/${noteId}`, {
+        method: "DELETE"
+    })
+        .then(getNotes)
+        .then(dispatchStateChangeEvent)
 }
