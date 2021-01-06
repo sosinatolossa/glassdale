@@ -1,5 +1,4 @@
 
-
 let criminals = []
 
 export const useCriminals = () => criminals.slice()
@@ -13,7 +12,7 @@ export const getCriminals = () => {
    .then(response => response.json()) //then convert the json string response to a javascript data structure
    .then(
        parsedCriminals => { //create a function that handles the data we get from the API and...
-           console.table(parsedCriminals) //puts the data in column
+         //console.table(parsedCriminals) //puts the data in column
            criminals = parsedCriminals //let our empty string equal to the data
        }
    )

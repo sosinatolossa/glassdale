@@ -1,7 +1,8 @@
-import {getCriminals, useCriminals} from "./CriminalProvider.js"
-import {getOfficers, useOfficers} from "../officers/OfficerProvider.js"
-import {Criminal} from "./Criminal.js"
+import { getCriminals, useCriminals } from "./CriminalProvider.js"
+import { useOfficers } from "../officers/OfficerProvider.js"
+import { Criminal } from "./Criminal.js"
 import { useConvictions } from "../convictions/ConvictionProvider.js"
+import { AssociatesDialog } from "./AssociateDisplay.js"
 
 
 const criminalElement = document.querySelector(".criminalsContainer")
@@ -16,7 +17,7 @@ const render = (criminals) => { //criminals is our array that hold the criminals
         appStateCriminals.push(Criminal(perp)) //Push that object in appSateCriminals array presented in HTML. Criminal is the function that we represent out JS code in HTML
     }
 
-    criminalElement.innerHTML = appStateCriminals.join("") //not necessary but this removes the commas after each object and joins them with no space
+    criminalElement.innerHTML = `${appStateCriminals.join("")} ${AssociatesDialog()}` //not necessary but this removes the commas after each object and joins them with no space
 }
 
 // Listen for the custom event you dispatched in ConvictionSelect

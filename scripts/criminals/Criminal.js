@@ -19,10 +19,10 @@ const contentTarget = document.querySelector(".filter")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", event => {
-    if (event.target.id === "associates--") {
-        const customEvent = new CustomEvent("alibiChosen", {
+    if (event.target.id.includes("associates--")) {
+        const customEvent = new CustomEvent("associatesBtnClicked", {
             detail: {
-                clickedCriminalID: event.target.value
+                clickedCriminalID: event.target.id.split("--")[1]
             }
         })
         eventHub.dispatchEvent(customEvent)
