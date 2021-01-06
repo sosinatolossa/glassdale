@@ -1,7 +1,7 @@
 import {CriminalList} from "./criminals/CriminalList.js"
 import {ConvictionSelect} from "./convictions/ConvictionSelect.js"
 import { OfficerSelect } from "./officers/OfficerSelect.js"
-import { render } from "./notes/NoteForm.js"
+import { NoteForm, render } from "./notes/NoteForm.js"
 import { ShowNoteButton } from "./notes/ShowNotesButton.js"
 import "./notes/NoteList.js"
 
@@ -53,3 +53,20 @@ ConvictionSelect()
 
 //6)
 //it's recommended to have new DOM element
+
+
+
+// 01/05/2021
+// TODO: Change suspect text input to dropdown select of API criminals 
+// Make a select element and populate it with all of the criminals
+     // Fetch call to get all the criminals(maybe)
+// Change the HTML representation of our form
+// Event listener to listen for dropdown change/select (maybe)
+// Change how the note is saved, to capture the criminalID
+// Change how note objects are represented when we fetch notes data
+
+// Modules that refactor:
+// NoteForm
+// Note
+// NoteList
+// notes.json
