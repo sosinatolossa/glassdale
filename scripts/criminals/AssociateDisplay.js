@@ -1,7 +1,7 @@
 import { useCriminals} from "./CriminalProvider.js"
 // import { useConvictions } from "../convictions/ConvictionProvider.js"
 
-// const contentTarget = document.querySelector(".dialogContainer")
+// const dialogText = document.querySelector(".dialogContainer")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", (event) => {
@@ -11,7 +11,9 @@ eventHub.addEventListener("click", (event) => {
 })
 
 export const AssociatesDialog = (alibi) => {
-    return `
+  //criminal.js line 31. If you increment contentTarget instead of just reassigning it, it will display the associates albis info
+  const dialogContainer = document.querySelector("#dialogContainer") //inserts the html representation into the dom
+  dialogContainer.innerHTML = `
         <dialog id = "associatesDialog">
             <div id = "associatesDialog__text"></div>
             <button id = "closeDialog">close</button>
@@ -23,7 +25,7 @@ eventHub.addEventListener("associatesBtnClicked", (event) => {
     const associatesDialog = document.querySelector("#associatesDialog")
     const dialogText = document.querySelector("#associatesDialog__text")
   
-    console.log('event al id', event.detail.clickedCriminalId);
+    // console.log('event al id', event.detail.clickedCriminalId);
   
     const clickedCriminal = useCriminals().find(
         (criminal) => criminal.id === parseInt(event.detail.clickedCriminalID)
@@ -39,6 +41,10 @@ eventHub.addEventListener("associatesBtnClicked", (event) => {
     associatesDialog.showModal()
   
   })
+
+
+
+
 
 // // Listen for the custom event you dispatched in ConvictionSelect
 // eventHub.addEventListener("alibiChosen", event => {

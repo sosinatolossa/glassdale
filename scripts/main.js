@@ -12,6 +12,7 @@ CriminalList()
 NoteForm()
 ShowNoteButton()
 ConvictionSelect()
+AssociatesDialog()
 
 
 // TODO: to filter out criminals based on the crime they've committed
