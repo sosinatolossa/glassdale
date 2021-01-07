@@ -3,21 +3,46 @@ import { useOfficers } from "../officers/OfficerProvider.js"
 import { Criminal } from "./Criminal.js"
 import { useConvictions } from "../convictions/ConvictionProvider.js"
 import { AssociatesDialog } from "./AssociateDisplay.js"
+import { useFacilities, getFacilities } from "../facility/FacilityProvider.js"
+import { useCriminalFacilities, getCriminalFacilities } from "../facility/CriminalFacilityProvider.js"
 
 
-const criminalElement = document.querySelector(".criminalsContainer")
+const contentTarget = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
 
-const render = (criminals) => { //criminals is our array that hold the criminals
+let criminals = []
+let facilities = []
+let criminalFacilities = []
 
-    let appStateCriminals = []
-    //can also use .map instead of for loop
-    for (const perp of criminals) { // for each object of our criminals array...
-        appStateCriminals.push(Criminal(perp)) //Push that object in appSateCriminals array presented in HTML. Criminal is the function that we represent out JS code in HTML
-    }
+// const render = (criminals) => { //criminals is our array that hold the criminals
 
-    criminalElement.innerHTML = `${appStateCriminals.join("")} ${AssociatesDialog()}` //not necessary but this removes the commas after each object and joins them with no space
+//     let appStateCriminals = []
+//     //can also use .map instead of for loop
+//     for (const perp of criminals) { // for each object of our criminals array...
+//         appStateCriminals.push(Criminal(perp)) //Push that object in appSateCriminals array presented in HTML. Criminal is the function that we represent out JS code in HTML
+//     }
+
+//     criminalElement.innerHTML = `${appStateCriminals.join("")} ${AssociatesDialog()}` //not necessary but this removes the commas after each object and joins them with no space
+// }
+
+const render = (criminalsToRender) => {
+    // Step 1 - Iterate all criminals
+    contentTarget.innerHTML = criminalsToRender.map(
+        (criminalObject) => {
+            // Step 2 - Filter all relationships to get only ones for this criminal
+            const facilityRelationshipsForThisCriminal = criminalFacilities.filter(cf => cf.criminalId === criminalObject.id)
+
+            // Step 3 - Convert the relationships to facilities with map()
+            const matchingFacilities = facilityRelationshipsForThisCriminal.map(cf => {
+                const matchingFacilityObject = facilities.find(facility => facility.id === cf.facilityId)
+                return matchingFacilityObject
+            })
+
+            // Must pass the matching facilities to the Criminal component
+            return Criminal(criminalObject, matchingFacilities)
+        }
+    ).join("")
 }
 
 // Listen for the custom event you dispatched in ConvictionSelect
@@ -36,10 +61,10 @@ eventHub.addEventListener("crimeChosen", event => {
             an argument
         */
 
-        const criminals = useCriminals()
+        const criminalsToFilter = criminals.slice()
         //we're trying to return if the criminal conviction is same us the crimes name
         //if they match, put them in the new array matchingCriminals
-        const matchingCriminals = criminals.filter( (criminal) => criminal.conviction === crime.name)
+        const matchingCriminals = criminalsToFilter.filter( (criminal) => criminal.conviction === crime.name)
 
         render(matchingCriminals) //this invokes the render function and pass the matchingCriminals
     }
@@ -61,9 +86,9 @@ eventHub.addEventListener("officerSelected", event => {
             an argument
         */
 
-        const criminals = useCriminals() //assign the useCriminals function to criminals varaible
+        const criminalsToFilter = criminals.slice()
         //filter the criminals by the officer that was selected and that arrested them
-        const matchingCriminals = criminals.filter( (criminal) => criminal.arrestingOfficer === anOfficer.name)
+        const matchingCriminals = criminalsToFilter.filter( (criminal) => criminal.arrestingOfficer === anOfficer.name)
         //update the DOM with those matching criminals
         render(matchingCriminals) //this invokes the render function and pass the matchingCriminals
     }
@@ -71,10 +96,28 @@ eventHub.addEventListener("officerSelected", event => {
 
 
 export const CriminalList = () => { //
-    getCriminals().then( () => { //get the function getCriminals that gets data of the criminals from API, change it to JS structure, puts them in table form and add them into criminals array
+    // getCriminals().then( () => { //get the function getCriminals that gets data of the criminals from API, change it to JS structure, puts them in table form and add them into criminals array
         
-        let perps = useCriminals() //let perps equal to copy of criminals array
-        render(perps) //update the DOM with the copy of array
-    })
+    //     let perps = useCriminals() //let perps equal to copy of criminals array
+    //     render(perps) //update the DOM with the copy of array
+    // })
+
+    // Kick off the fetching of both collections of data
+
+    getCriminals()
+    .then(getFacilities)
+    
+    .then(getCriminalFacilities)
+    .then(
+        () => {
+            // Pull in the data now that it has been fetched
+            facilities = useFacilities()
+            criminalFacilities= useCriminalFacilities()
+            criminals = useCriminals()
+
+            // Pass all three collections of data to render()
+            render(criminals, facilities, criminalFacilities)
+        }
+    )
 }
 
