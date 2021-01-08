@@ -58,3 +58,22 @@ AssociatesDialog()
 
 
 
+// TODO: Chapter 9- Show witness statements in place of criminals list
+//Which components do you need for this feature?
+//provider -- get witnesses and add them to app state. Make app state available with a useWitnesses function
+//HTML converter -- represent a JS object as HTML
+// Button with a "click" event listener on it, with a callback that generates a custom event
+// List component for creating 'cards' using the witness data. Listens fot the custom event that signals the show witnesses button was clicked
+
+//Where is the data coming from in the API? Do you need a new provider?
+// The Button component
+
+//WHich component would listen and react to that custom event?
+// List component
+
+//Does data need to be sent along with the message?
+//
+
+//Which DOM element would contain the list of witness statement? Do you need a new one, or can they go in as existing one? 
+//Just put it in the same container as the criminal list
+//Or put the witnesses in their own container and just hide the criminals
