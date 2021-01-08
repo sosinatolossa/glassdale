@@ -17,16 +17,3 @@ export const getCriminals = () => {
        }
    )
 }
-
-// let alibis = []
-// export const useAlibis = () => alibis.slice()
-// export const getAlibis = () => {
-//     return fetch("https://criminals.glassdale.us/criminals")
-//     .then(response => response.json())
-//     .then(
-//         parsedAlibis => {
-//             console.table(parsedAlibis)
-//             alibis = parsedAlibis
-//         }
-//     )
-// }

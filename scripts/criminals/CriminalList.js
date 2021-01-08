@@ -2,7 +2,6 @@ import { getCriminals, useCriminals } from "./CriminalProvider.js"
 import { useOfficers } from "../officers/OfficerProvider.js"
 import { Criminal } from "./Criminal.js"
 import { useConvictions } from "../convictions/ConvictionProvider.js"
-import { AssociatesDialog } from "./AssociateDisplay.js"
 import { useFacilities, getFacilities } from "../facility/FacilityProvider.js"
 import { useCriminalFacilities, getCriminalFacilities } from "../facility/CriminalFacilityProvider.js"
 
@@ -15,16 +14,6 @@ let criminals = []
 let facilities = []
 let criminalFacilities = []
 
-// const render = (criminals) => { //criminals is our array that hold the criminals
-
-//     let appStateCriminals = []
-//     //can also use .map instead of for loop
-//     for (const perp of criminals) { // for each object of our criminals array...
-//         appStateCriminals.push(Criminal(perp)) //Push that object in appSateCriminals array presented in HTML. Criminal is the function that we represent out JS code in HTML
-//     }
-
-//     criminalElement.innerHTML = `${appStateCriminals.join("")} ${AssociatesDialog()}` //not necessary but this removes the commas after each object and joins them with no space
-// }
 
 const render = (criminalsToRender) => {
     // Step 1 - Iterate all criminals
@@ -95,14 +84,7 @@ eventHub.addEventListener("officerSelected", event => {
 })
 
 
-export const CriminalList = () => { //
-    // getCriminals().then( () => { //get the function getCriminals that gets data of the criminals from API, change it to JS structure, puts them in table form and add them into criminals array
-        
-    //     let perps = useCriminals() //let perps equal to copy of criminals array
-    //     render(perps) //update the DOM with the copy of array
-    // })
-
-    // Kick off the fetching of both collections of data
+export const CriminalList = () => { 
 
     getCriminals()
     .then(getFacilities)

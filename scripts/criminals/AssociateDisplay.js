@@ -1,7 +1,6 @@
 import { useCriminals} from "./CriminalProvider.js"
-// import { useConvictions } from "../convictions/ConvictionProvider.js"
 
-// const dialogText = document.querySelector(".dialogContainer")
+
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", (event) => {
@@ -11,7 +10,7 @@ eventHub.addEventListener("click", (event) => {
 })
 
 export const AssociatesDialog = (alibi) => {
-  //criminal.js line 31. If you increment contentTarget instead of just reassigning it, it will display the associates albis info
+
   const dialogContainer = document.querySelector("#dialogContainer") //inserts the html representation into the dom
   dialogContainer.innerHTML = `
         <dialog id = "associatesDialog">
@@ -25,7 +24,6 @@ eventHub.addEventListener("associatesBtnClicked", (event) => {
     const associatesDialog = document.querySelector("#associatesDialog")
     const dialogText = document.querySelector("#associatesDialog__text")
   
-    // console.log('event al id', event.detail.clickedCriminalId);
   
     const clickedCriminal = useCriminals().find(
         (criminal) => criminal.id === parseInt(event.detail.clickedCriminalID)
@@ -42,30 +40,3 @@ eventHub.addEventListener("associatesBtnClicked", (event) => {
   
   })
 
-
-
-
-
-// // Listen for the custom event you dispatched in ConvictionSelect
-// eventHub.addEventListener("alibiChosen", event => {
-//     // Use the property you added to the event detail.
-//     if (event.detail.clickedCriminalID !== "0"){
-//         /*
-//             Filter the criminals application state down to the people that committed the crime
-//         */
-
-//         const crimes = useConvictions()
-//         //Out of all the crimes, we want to find the one crime whose ID is the same as the ID that was sent to us through our customEvent  
-//         const crime = crimes.find( crime => crime.id === parseInt(event.detail.clickedCriminalID) )
-//         /*
-//             Then invoke render() and pass the filtered collection as
-//             an argument
-//         */
-
-//         const criminals = useCriminals()
-        
-//         const matchingAlibis = criminals.filter( (criminal) => criminal.known_associates === crime.name)
-
-//         render(matchingAlibis) //this invokes the render function and pass the matchingAlibis
-//     }
-// })
